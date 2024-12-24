@@ -1,0 +1,20 @@
+.circle {
+    background: #333;
+}
+
+.cont {
+
+    margin: 100px;
+    background: white;
+    /* padding: 100px; */
+    filter: blur(10px) contrast(20);
+}
+
+.void {
+    padding-top: 120px;
+    padding-left: 50px;
+    background-color: black;
+    border-radius: 50px;
+    width: 1100px;
+    height: 900px;
+}

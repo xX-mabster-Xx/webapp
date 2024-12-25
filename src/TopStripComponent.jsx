@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
-import './TopStripComponent.css'; // Import the CSS file
+import './styles/TopStripComponent.css'; // Import the CSS file
 
 const root = document.documentElement;
 
 function setTheme(theme) {
   if (theme === 'dark') {
-    root.style.setProperty('--main-bg-color', '#5e5e5e');
-    root.style.setProperty('--strip-bg-color', '#1a1a1a');
-    root.style.setProperty('--strip-text-color', '#ffffff');
-    root.style.setProperty('--button-bg-color', '#333333');
-    root.style.setProperty('--button-hover-color', '#555555');
-    root.style.setProperty('--group-hover-color', '#2d2d2d');
+    document.body.classList.add('dark-theme');
+    document.body.classList.remove('light-theme');
   } else {
-    root.style.setProperty('--main-bg-color', '#f0f0f0');
-    root.style.setProperty('--strip-bg-color', '#f8f8f8');
-    root.style.setProperty('--strip-text-color', '#333333');
-    root.style.setProperty('--button-bg-color', '#dcdcdc');
-    root.style.setProperty('--button-hover-color', '#b0b0b0');
-    root.style.setProperty('--group-hover-color', '#ececec');
+    document.body.classList.add('light-theme');
+    document.body.classList.remove('dark-theme');
   }
 }
 
@@ -68,8 +60,9 @@ const TopStripComponent = ({ onButtonClick }) => {
             </Link>
         </div>
         <div className='group group-debri'>
+            <h4 className='group-name'>TON</h4>
             <Link to="/ton/dns">
-              <Button label={isCollapsed ? '1' : "TON: DNS"} className="button" />
+              <Button label={isCollapsed ? 'DNS' : "TON: DNS"} className="button" />
             </Link>
             <Link to="/circles">
               <Button label={isCollapsed ? '2' : "Page 2"} className="button" />
@@ -80,6 +73,7 @@ const TopStripComponent = ({ onButtonClick }) => {
         <label>
           <input
             type="checkbox"
+            className='themecheckbox'
             checked={!isDarkTheme}
             onChange={toggleTheme}
           />

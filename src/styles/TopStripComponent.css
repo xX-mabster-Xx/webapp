@@ -70,6 +70,10 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
+  .group-name {
+    margin: 0;
+    text-align: center;
+  }
   
   .button {
     width: 100%;
@@ -77,11 +81,12 @@
     margin-top: 10px;
     background-color: var(--button-bg-color); /* Light Gray */
     color: var(--strip-text-color); /* Dark Gray */
-    padding: 8px;
+    padding: 0px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-align: center;
   }
   
   .button:hover {
@@ -110,7 +115,7 @@
     cursor: pointer;
   }
   
-  input {
+  .themecheckbox {
     position: absolute;
     display: none;
   }

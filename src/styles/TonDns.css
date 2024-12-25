@@ -1,0 +1,106 @@
+/* 
+ * Общий стиль для .main-dns — то, что будет общим для обеих тем.
+ * Например, расположение, размеры и т.д.
+ */
+ .main-dns {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    width: 600px;
+    height: 280px;
+    border-radius: 40px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1rem;
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+    transition: color 0.3s ease;
+    /* Если хотите отключить фон по умолчанию, не указывайте background-color здесь. */
+  }
+
+
+
+  
+  .ton-button {
+    position: absolute; 
+    /* margin-top: 1rem; */
+    top: 20px;
+    right: 20px;
+  }
+  
+  .dns-input {
+    width: 90%    ;
+    height: 40px;
+
+    margin-top: 10px;
+    /* width: 80%; */
+    padding: 0.5rem;
+    
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3),
+                inset -2px -2px 5px rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease;
+
+  }
+
+  .dns-input::placeholder {
+    color: #ffffff8a;
+ }
+  
+  /* ==================================================
+     Светлая тема (голубые оттенки)
+     ================================================== */
+  .light-theme .main-dns {
+    background-color: #7ab2eb; /* Очень светлый голубоватый фон */
+    color: #1a2b3c;            /* Тёмно-синий для текста */
+  }
+  
+  .light-theme  .main-dns:hover {
+    background-color: #71a5da;
+  }
+
+  /* Цвета для кнопки и поля ввода в светлой теме */
+
+  
+  /* Поле ввода в светлой теме */
+  .light-theme .dns-input {
+    background-color: #91c8ff; /* Белый фон */
+    color: #1a2b3caf;            /* Тёмно-синий текст */
+  }
+  
+  /* Hover для инпута в светлой теме */
+  /* .light-theme .dns-input:hover {
+    background-color: #b8ecf5;
+  } */
+  
+  /* ==================================================
+     Тёмная тема (тёмно-синие оттенки)
+     ================================================== */
+  .dark-theme .main-dns {
+    background-color: #2f5b85; /* Тёмно-синий фон */
+    color: #ffffff;            /* Белый текст */
+  }
+  
+  .dark-theme .main-dns:hover {
+    background-color: #29547c; /* Тёмно-синий фон */
+    color: #ffffff;            /* Белый текст */
+  }
+
+  /* Поле ввода в тёмной теме */
+  .dark-theme .dns-input {
+    background-color: #3a6fa1; /* Тёмно-синий фон */
+    color: #ffffffad;
+  }
+  /* Hover для инпута в тёмной теме */
+  /* .dark-theme .dns-input:hover {
+    background-color: #c4c4c4;
+  } */
+  

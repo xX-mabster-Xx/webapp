@@ -4,7 +4,7 @@ import TopStripComponent from './TopStripComponent';
 import Component1 from './Component1';
 import CircleMovingArea from './Component2';
 import TonDns from './TonDns';
-import './App.css';
+import './styles/App.css';
 
 const App = () => {
   return (

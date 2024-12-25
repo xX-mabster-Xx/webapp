@@ -7,6 +7,25 @@
   --group-hover-color: #ececec;
 }
 
+.dark-theme {
+  --main-bg-color: #a3a3a3;
+  --strip-bg-color: #1a1a1a;
+  --strip-text-color: #ffffff;
+  --button-bg-color: #333333;
+  --button-hover-color: #555555;
+  --group-hover-color: #2d2d2d;
+}
+
+/* Светлая тема */
+.light-theme {
+  --main-bg-color: #f0f0f0;
+  --strip-bg-color: #f8f8f8;
+  --strip-text-color: #333333;
+  --button-bg-color: #dcdcdc;
+  --button-hover-color: #b0b0b0;
+  --group-hover-color: #ececec;
+}
+
 * { -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
 body {

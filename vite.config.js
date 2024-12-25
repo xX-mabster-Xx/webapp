@@ -7,4 +7,10 @@ export default defineConfig({
   server: {
     open: true, // Открывать браузер при запуске
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'], // Поддержка TypeScript
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
 });

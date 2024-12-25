@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ton/core": "^0.59.1",
+    "@ton/crypto": "^3.3.0",
+    "@ton/ton": "^15.1.0",
     "@tonconnect/ui-react": "^2.0.9",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
-    "typescript": "^5.7.2"
+    "ts-node": "^10.9.2"
   },
   "scripts": {
     "dev": "vite",
@@ -37,6 +40,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
     "gh-pages": "^6.2.0",
+    "typescript": "^5.7.2",
     "vite": "^6.0.5"
   }
 }

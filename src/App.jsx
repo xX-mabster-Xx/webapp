@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, HashRouter } from 'react-router
 import TopStripComponent from './TopStripComponent';
 import Component1 from './Component1';
 import CircleMovingArea from './Component2';
+import TonDns from './TonDns';
 import './App.css';
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
           <Routes>
             <Route path="/component1" element={<Component1 />} />
             <Route path="/circles" element={<CircleMovingArea />} />
-            <Route path="/ton/dns" element={<CircleMovingArea />} />
+            <Route path="/ton/dns" element={<TonDns />} />
             <Route path='/' element={<p>Hello</p>} />
           </Routes>
         </div>

@@ -5,6 +5,7 @@ type DnsStepInfo = {
   id: number;
   resolver: string;
   remainingDomain: string;
+  displayName: string;
 };
 
 export function DnsChain(props: {
@@ -21,18 +22,20 @@ export function DnsChain(props: {
         id: Date.now(),
         resolver: 'Ef_lZ1T4NCb2mwkme9h2rJfESCE0W34ma9lWp7-_uY3zXDvq',
         remainingDomain: props.rootDomain,
+        displayName: 'root DNS'
       },
     ]);
   }, [props.rootDomain]);
 
   // Функция, вызываемая, когда DnsStep находит next_resolver
-  const addNextStep = (resolver: string, domain: string) => {
+  const addNextStep = (resolver: string, domain: string, displayName: string) => {
     setSteps(prev => [
       ...prev,
       {
         id: Date.now(), // уникальный id
         resolver,
         remainingDomain: domain,
+        displayName,
       },
     ]);
   };
@@ -42,9 +45,7 @@ export function DnsChain(props: {
   };
 
   return (
-    <div style={{ border: '1px solid gray', margin: '1rem', padding: '1rem' }}>
-      <h2>DNS Chain</h2>
-      <button onClick={handleReset}>Сбросить</button>
+    <div className='resolve-chain'>
 
       {steps.map(step => (
         <DnsStep
@@ -52,8 +53,9 @@ export function DnsChain(props: {
           stepId={step.id}
           resolver={step.resolver}
           remainingDomain={step.remainingDomain}
-          onNextResolver={(nextResolver: string, newDomain: string) =>
-            addNextStep(nextResolver, newDomain)
+          displayName={step.displayName}
+          onNextResolver={(nextResolver: string, newDomain: string, displayName: string) =>
+            addNextStep(nextResolver, newDomain, displayName)
           }
         />
       ))}

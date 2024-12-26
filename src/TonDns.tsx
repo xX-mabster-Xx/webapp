@@ -39,26 +39,28 @@ export default function TonDnsFull() {
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       <TonConnectButton className="ton-button" />
-
-      <div className="main-dns">
-        <input
-          className="dns-input"
-          type="text"
-          placeholder="Введите (например: x-mabster-x.ton), нажмите Enter"
-          value={userDomain}
-          onChange={(e) => setUserDomain(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
+      <div className='dns-app'>
+        <div className="main-dns">
+          <input
+            className="dns-input"
+            type="text"
+            placeholder="Введите (например: x-mabster-x.ton), нажмите Enter"
+            value={userDomain}
+            onChange={(e) => setUserDomain(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <h3>Enter your domain</h3>
+        </div>
 
         {start && (
-          <DnsChain
-            rootDomain={queryDomain}
-            onReset={() => {
-              setStart(false); // Скрываем DnsChain при сбросе
-              setQueryDomain('');
-            }}
-          />
-        )}
+            <DnsChain
+              rootDomain={queryDomain}
+              onReset={() => {
+                setStart(false); // Скрываем DnsChain при сбросе
+                setQueryDomain('');
+              }}
+            />
+          )}
       </div>
     </TonConnectUIProvider>
   );

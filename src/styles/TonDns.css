@@ -2,14 +2,9 @@
  * Общий стиль для .main-dns — то, что будет общим для обеих тем.
  * Например, расположение, размеры и т.д.
  */
- .main-dns {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    width: 600px;
-    height: 280px;
+ .main-dns {  
+    width: 100%;
+    height: 180px;
     border-radius: 40px;
   
     display: flex;
@@ -18,13 +13,22 @@
     justify-content: flex-start;
     padding-top: 1rem;
     box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3s ease;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease,
+                color 0.3s ease;
     /* Если хотите отключить фон по умолчанию, не указывайте background-color здесь. */
   }
 
+.main-dns h3 {
+    margin-top: 40px;
+}
 
-
+.dns-app {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 70%
+}
   
   .ton-button {
     position: absolute; 
@@ -34,7 +38,7 @@
   }
   
   .dns-input {
-    width: 90%    ;
+    width: calc(100% - 80px);
     height: 40px;
 
     margin-top: 10px;
@@ -55,15 +59,60 @@
     color: #ffffff8a;
  }
   
+.resolve-chain {
+    margin-top: 30px;
+}
+
+ .resolve-step {
+    border-radius: 40px;
+    padding: 40px;
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-bottom: 2rem;
+  }
+  
+  .resolved-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .resolved-domain {
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  .resolver-address a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+    color: #007bff; /* Синий цвет ссылки */
+  }
+  
+  .resolver-address a:hover {
+    color: darkblue;
+  }
+  
+  .resolve-step p {
+    margin-top: 0;
+  }
+
+
+
+
+
   /* ==================================================
      Светлая тема (голубые оттенки)
      ================================================== */
-  .light-theme .main-dns {
+  .light-theme .main-dns, 
+  .light-theme .resolve-step {
     background-color: #7ab2eb; /* Очень светлый голубоватый фон */
     color: #1a2b3c;            /* Тёмно-синий для текста */
   }
   
-  .light-theme  .main-dns:hover {
+  .light-theme .main-dns:hover,
+  .light-theme .resolve-step:hover {
     background-color: #71a5da;
   }
 
@@ -84,12 +133,14 @@
   /* ==================================================
      Тёмная тема (тёмно-синие оттенки)
      ================================================== */
-  .dark-theme .main-dns {
+  .dark-theme .main-dns,
+  .dark-theme .resolve-step {
     background-color: #2f5b85; /* Тёмно-синий фон */
     color: #ffffff;            /* Белый текст */
   }
   
-  .dark-theme .main-dns:hover {
+  .dark-theme .main-dns:hover,
+  .dark-theme .resolve-step:hover {
     background-color: #29547c; /* Тёмно-синий фон */
     color: #ffffff;            /* Белый текст */
   }

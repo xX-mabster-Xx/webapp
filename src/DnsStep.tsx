@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTonClient } from './ton/hooks/useTonClient';
-import { Address, Builder, Cell } from '@ton/core';
+import { Address, base32Decode, Builder, Cell } from '@ton/core';
 import { Buffer } from 'buffer';
 import { DnsContract } from './ton/wrappers/DnsContract';
 
@@ -8,7 +8,8 @@ type StepProps = {
   stepId: number;
   resolver: string;         // Адрес текущего DNS-резолвера
   remainingDomain: string;  // Оставшийся домен (base64)
-  onNextResolver: (nextResolver: string, newDomain: string) => void;
+  displayName: string; // <-- добавили
+  onNextResolver: (nextResolver: string, newDomain: string, displayName: string) => void;
 };
 
 export function DnsStep(props: StepProps) {
@@ -111,7 +112,21 @@ export function DnsStep(props: StepProps) {
             `Unresolved domain part: ${newRemainingDomain}`,
           ]);
           // Создаём новый шаг
-          props.onNextResolver(nextResolver.toString(), newRemainingDomain);
+          const resolvedBuffer = domainCell.asSlice().loadBits(bitsResolved).subbuffer(0, bitsResolved);
+          if (!resolvedBuffer) {
+            console.error('Error: BitString is not byte-aligned.');
+            return '';
+          }
+          // Пример: заменяем все 0x00 на 0x2E ('.') перед toString('utf-8')
+          for (let i = 0; i < resolvedBuffer.length; i++) {
+            if (resolvedBuffer[i] === 0x00) {
+            resolvedBuffer[i] = 0x2E; // '.' (ASCII 46, hex 2E)
+            }
+          }
+            
+  
+          const resolvedString = '.' + resolvedBuffer.toString('utf-8').split('.').filter((part) => part !== '').reverse().join('.');
+          props.onNextResolver(nextResolver.toString(), newRemainingDomain, resolvedString);
         } else {
           setLogs(l => [...l, 'dns_next_resolver is null => stopping']);
         }
@@ -144,25 +159,34 @@ export function DnsStep(props: StepProps) {
     fetchDnsRecord();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [retryCount, client]); 
-  // Зависимости: client (чтобы не крашилось, если client из контекста),
-  // и retryCount, чтобы повторять при сетевых ошибках.
-
+  // Зависимости: client (чтобы не крашилось, если client из контекста), 
+  
+  
   return (
-    <div style={{ marginBottom: '1rem', padding: '1rem', border: '1px dashed #aaa' }}>
-      <h3>Step #{props.stepId}</h3>
-      <p>DNS Resolver Address: {resolver}</p>
-      <p>Remaining domain (base64): {base64Domain}</p>
-
+    <div className="resolve-step">
+      <div className="resolved-header">
+        <p className="resolved-domain">{props.displayName}</p>
+        <p className="resolver-address">
+          <a
+            href={`https://tonviewer.com/${resolver}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {resolver}
+          </a>
+        </p>
+      </div>
+  
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-
+  
       {!error && !loading && partialBits !== null && (
         <div>
           <p>Partial bits: {partialBits}</p>
           {resultCell && <pre>Cell: {resultCell.toString()}</pre>}
         </div>
       )}
-
+  
       {logs.length > 0 && (
         <details style={{ marginTop: '0.5rem' }} open>
           <summary>Logs</summary>
